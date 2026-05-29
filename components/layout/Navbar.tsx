@@ -12,18 +12,12 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    /*
-     * Fixed header — floats over the hero so the mint background reaches
-     * the top of the page. pointer-events-none on the wrapper lets
-     * clicks in the padding gutter fall through to content below.
-     */
     <header className="fixed inset-x-0 top-0 z-50 px-4 py-3 pointer-events-none">
 
       <nav
         className="glass-nav max-w-6xl mx-auto rounded-full px-5 py-3 flex items-center justify-between pointer-events-auto"
         aria-label="Main navigation"
       >
-        {/* Logo + "by Grazify" */}
         <Link
           href="/"
           className="relative z-[1] flex items-center gap-2.5"
@@ -36,6 +30,7 @@ export default function Navbar() {
             height={32}
             className="w-8 h-8 flex-shrink-0"
             aria-hidden="true"
+            priority
           />
           <div className="hidden sm:flex flex-col justify-center leading-none gap-[3px]">
             <Image
@@ -43,6 +38,7 @@ export default function Navbar() {
               alt={SITE.appName}
               width={110}
               height={20}
+              priority
             />
             <span className="text-[10px] text-[#6D6D6D] font-medium tracking-wide">
               by{" "}
@@ -53,7 +49,6 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Desktop nav links */}
         <ul className="relative z-[1] hidden md:flex items-center gap-1">
           {NAV_LINKS.map((link) => (
             <li key={link.label}>
@@ -67,12 +62,10 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Desktop CTA */}
         <div className="relative z-[1] hidden md:block">
           <GooglePlayButton variant="navbar" />
         </div>
 
-        {/* Mobile hamburger */}
         <button
           onClick={() => setMenuOpen((o) => !o)}
           className="relative z-[1] md:hidden p-2.5 rounded-full hover:bg-[#EAF8F0] transition-colors"
@@ -85,7 +78,6 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile dropdown */}
       {menuOpen && (
         <div className="glass-dropdown md:hidden mt-2 max-w-6xl mx-auto rounded-[1.5rem] px-5 py-5 pointer-events-auto">
           <ul className="flex flex-col mb-4">

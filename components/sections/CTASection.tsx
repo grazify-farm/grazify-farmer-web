@@ -1,11 +1,16 @@
+import Image from "next/image";
+import Container from "@/components/common/Container";
 import GooglePlayButton from "@/components/common/GooglePlayButton";
 import Reveal from "@/components/common/Reveal";
 import { ASSETS } from "@/lib/assets";
 
+const THUMB_W = 1419;
+const THUMB_H = 2796;
+
 export default function CTASection() {
   return (
     <section className="py-20 bg-[#EAF8F0] relative overflow-hidden">
-      <div className="max-w-5xl mx-auto px-4">
+      <Container>
         <Reveal>
           <div
             className="relative bg-[#202020] rounded-[2.5rem] overflow-hidden"
@@ -14,12 +19,16 @@ export default function CTASection() {
                 "0 25px 60px -10px rgba(37,211,102,0.2), 0 25px 60px -20px rgba(0,0,0,0.4)",
             }}
           >
-            {/* Background glows */}
-            <div className="absolute top-0 right-0 w-80 h-80 bg-[#25D366] opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#25D366] opacity-10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4 pointer-events-none" />
+            <div
+              className="absolute top-0 right-0 w-80 h-80 bg-[#25D366] opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none"
+              aria-hidden="true"
+            />
+            <div
+              className="absolute bottom-0 left-0 w-64 h-64 bg-[#25D366] opacity-10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4 pointer-events-none"
+              aria-hidden="true"
+            />
 
             <div className="relative flex flex-col lg:flex-row items-center">
-              {/* Text + CTA */}
               <div className="flex-1 p-10 md:p-14 text-center lg:text-left">
                 <div className="inline-flex items-center gap-2 bg-[#25D366]/20 text-[#25D366] text-xs font-bold px-4 py-2 rounded-full mb-6">
                   <span>🌾</span> Free to Download
@@ -28,14 +37,13 @@ export default function CTASection() {
                   Join the GraziLink{" "}
                   <span className="text-[#25D366]">farmer community</span> today
                 </h2>
-                <p className="text-[#B0B0B0] text-lg mb-8 max-w-md mx-auto lg:mx-0">
+                <p className="text-[#B0B0B0] text-base md:text-lg mb-8 max-w-md mx-auto lg:mx-0">
                   Download GraziLink and start connecting, learning, sharing and
                   growing with farmers across India.
                 </p>
                 <GooglePlayButton variant="hero" />
               </div>
 
-              {/* Decorative stacked screenshots — aria-hidden, no text */}
               <div className="hidden lg:flex flex-shrink-0 items-end gap-3 pb-10 pr-12">
                 <div
                   className="overflow-hidden"
@@ -46,11 +54,14 @@ export default function CTASection() {
                     borderRadius: "2rem",
                   }}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={ASSETS.screens.communityFeed.portrait}
                     alt=""
                     aria-hidden="true"
+                    width={THUMB_W}
+                    height={THUMB_H}
+                    sizes="110px"
+                    loading="lazy"
                     className="w-full h-auto block"
                   />
                 </div>
@@ -63,11 +74,14 @@ export default function CTASection() {
                     borderRadius: "2rem",
                   }}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={ASSETS.screens.aiCropScan.portrait}
                     alt=""
                     aria-hidden="true"
+                    width={THUMB_W}
+                    height={THUMB_H}
+                    sizes="110px"
+                    loading="lazy"
                     className="w-full h-auto block"
                   />
                 </div>
@@ -75,7 +89,7 @@ export default function CTASection() {
             </div>
           </div>
         </Reveal>
-      </div>
+      </Container>
     </section>
   );
 }

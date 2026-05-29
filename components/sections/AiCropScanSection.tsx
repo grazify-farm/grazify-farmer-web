@@ -1,10 +1,13 @@
+import Container from "@/components/common/Container";
 import DottedPattern from "@/components/common/DottedPattern";
-import ScreenVisual from "@/components/screens/ScreenVisual";
 import Reveal from "@/components/common/Reveal";
+import ScreenVisual from "@/components/screens/ScreenVisual";
 import { ASSETS } from "@/lib/assets";
 
-const scanCards = [
-  { icon: "📸", title: "Multiple Photo Scan",        desc: "Upload multiple photos for more accurate crop analysis." },
+type ScanCard = { icon: string; title: string; desc: string };
+
+const scanCards: ScanCard[] = [
+  { icon: "📸", title: "Multiple Photo Scan",         desc: "Upload multiple photos for more accurate crop analysis." },
   { icon: "🔬", title: "Disease or Stress Detection", desc: "AI identifies possible crop diseases or stress conditions." },
   { icon: "📊", title: "Severity and Confidence",     desc: "See the severity level and how confident the AI result is." },
   { icon: "📋", title: "Recommended Next Steps",      desc: "Receive actionable guidance on what to do after the scan." },
@@ -14,15 +17,15 @@ export default function AiCropScanSection() {
   return (
     <section id="crop-scan" className="py-20 bg-[#202020] relative overflow-hidden">
       <DottedPattern className="dotted-bg-dark opacity-100" />
+
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[560px] h-[560px] bg-[#25D366] rounded-full blur-3xl pointer-events-none animate-pulse-glow"
         aria-hidden="true"
       />
 
-      <div className="relative max-w-6xl mx-auto px-4">
+      <Container className="relative">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
 
-          {/* ── LEFT: text + cards + animated report ── */}
           <Reveal className="flex-1">
             <span className="inline-flex items-center gap-2 bg-[#25D366]/15 text-[#25D366] text-xs font-bold px-4 py-1.5 rounded-full mb-5">
               ✦ Powered by AI
@@ -31,13 +34,12 @@ export default function AiCropScanSection() {
               Detect crop issues early with{" "}
               <span className="text-[#25D366]">AI Crop Scan</span>
             </h2>
-            <p className="text-[#B0B0B0] text-lg mb-6 leading-relaxed">
+            <p className="text-[#B0B0B0] text-base md:text-lg mb-6 leading-relaxed">
               Upload multiple crop photos and receive AI-powered insights about
               possible disease, stress, severity level, confidence score and
               recommended next steps.
             </p>
 
-            {/* Mini report card with animated confidence bar */}
             <div className="bg-[#1C1C1C] border border-[#404040] rounded-2xl p-4 mb-5">
               <div className="flex items-center justify-between mb-3">
                 <div>
@@ -59,7 +61,9 @@ export default function AiCropScanSection() {
                     aria-hidden="true"
                   />
                 </div>
-                <p className="text-[#5A5A5A] text-[10px]">High confidence — recommendations are reliable</p>
+                <p className="text-[#5A5A5A] text-[10px]">
+                  High confidence — recommendations are reliable
+                </p>
               </div>
               <div className="bg-[#25D366]/10 border border-[#25D366]/20 rounded-xl px-3 py-2">
                 <p className="text-[#25D366] text-[10px] font-semibold mb-0.5">Recommendation</p>
@@ -69,7 +73,6 @@ export default function AiCropScanSection() {
               </div>
             </div>
 
-            {/* Benefit cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
               {scanCards.map((card) => (
                 <div
@@ -92,15 +95,11 @@ export default function AiCropScanSection() {
             </div>
           </Reveal>
 
-          {/* ── RIGHT: left-tilted scan screenshot ──
-              Hover swaps to portrait for UI clarity.
-              No text overlaid — website text is in the left column.
-          */}
           <Reveal delay={150} className="flex justify-center flex-shrink-0 w-full lg:max-w-[270px]">
             <ScreenVisual
               portraitSrc={ASSETS.screens.aiCropScan.portrait}
               leftSrc={ASSETS.screens.aiCropScan.left}
-              alt="GraziLink AI crop scan report — aloe plant with 85% confidence and severity score"
+              alt="GraziLink AI crop scan report"
               preferred="left"
               hoverSwap
               glow
@@ -109,7 +108,7 @@ export default function AiCropScanSection() {
           </Reveal>
 
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

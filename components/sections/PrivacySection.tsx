@@ -1,16 +1,17 @@
+import Container from "@/components/common/Container";
 import Reveal from "@/components/common/Reveal";
 import { PRIVACY_CARDS } from "@/lib/site-content";
 
 export default function PrivacySection() {
   return (
     <section id="privacy" className="py-20 bg-[#F7F7F7]">
-      <div className="max-w-4xl mx-auto px-4 text-center">
+      <Container size="narrow" className="text-center">
 
         <Reveal>
           <h2 className="text-3xl md:text-4xl font-bold text-[#202020] mb-4">
             Privacy and security <span className="text-[#25D366]">matter</span>
           </h2>
-          <p className="text-[#6D6D6D] text-lg mb-10 max-w-2xl mx-auto">
+          <p className="text-[#6D6D6D] text-base md:text-lg mb-10 max-w-2xl mx-auto">
             We respect user privacy and take appropriate steps to protect personal
             information. Users can request deletion of their account and associated
             data at any time.
@@ -29,7 +30,7 @@ export default function PrivacySection() {
           ))}
         </div>
 
-      </div>
+      </Container>
     </section>
   );
 }

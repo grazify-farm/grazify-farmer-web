@@ -1,17 +1,25 @@
-interface FeatureCardProps {
+type FeatureCardProps = {
   icon: string;
   title: string;
   description: string;
   featured?: boolean;
-}
+};
 
-export default function FeatureCard({ icon, title, description, featured = false }: FeatureCardProps) {
+export default function FeatureCard({
+  icon,
+  title,
+  description,
+  featured = false,
+}: FeatureCardProps) {
   if (featured) {
     return (
-      <div className="relative bg-[#202020] border border-[#25D366] rounded-[2rem] p-6 group overflow-hidden col-span-1">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-[#25D366] opacity-10 rounded-full blur-2xl" />
+      <div className="relative bg-[#202020] border border-[#25D366] rounded-[2rem] p-6 group overflow-hidden">
+        <div
+          className="absolute top-0 right-0 w-32 h-32 bg-[#25D366] opacity-10 rounded-full blur-2xl"
+          aria-hidden="true"
+        />
         <div className="relative">
-          <div className="w-13 h-13 rounded-2xl bg-[#25D366] flex items-center justify-center text-2xl mb-4 w-12 h-12">
+          <div className="w-12 h-12 rounded-2xl bg-[#25D366] flex items-center justify-center text-2xl mb-4">
             {icon}
           </div>
           <div className="inline-flex items-center gap-1.5 bg-[#25D366]/20 text-[#25D366] text-[10px] font-bold px-2.5 py-1 rounded-full mb-3">

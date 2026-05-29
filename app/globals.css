@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── CSS Variables ── */
 :root {
   --green-accent: #25D366;
   --darker-green: #029600;
@@ -15,7 +14,6 @@
   --floating-bar: #1A1A1A;
 }
 
-/* ── Base ── */
 html { scroll-behavior: smooth; }
 
 body {
@@ -25,7 +23,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Dotted backgrounds ── */
 .dotted-bg {
   background-image: radial-gradient(circle, #25D36633 1px, transparent 1px);
   background-size: 22px 22px;
@@ -36,15 +33,14 @@ body {
   background-size: 22px 22px;
 }
 
-/* ── Keyframes ── */
 @keyframes float-slow {
   0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-14px); }
+  50%      { transform: translateY(-14px); }
 }
 
 @keyframes pulse-glow {
   0%, 100% { opacity: 0.06; transform: scale(1); }
-  50%       { opacity: 0.14; transform: scale(1.1); }
+  50%      { opacity: 0.14; transform: scale(1.1); }
 }
 
 @keyframes grow-bar {
@@ -62,14 +58,8 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Animation classes ── */
-.animate-float-slow {
-  animation: float-slow 7s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 4s ease-in-out infinite;
-}
+.animate-float-slow { animation: float-slow 7s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
 
 .animate-grow-bar {
   animation: grow-bar 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
@@ -77,17 +67,11 @@ body {
   width: 0%;
 }
 
-/* ─────────────────────────────────────────────────────
-   Glass Navbar pill
-   Applied to the <nav> element inside the fixed header.
-   Content inside must be position:relative so it renders
-   above the ::before shine layer.
-───────────────────────────────────────────────────── */
 .glass-nav {
-  background:               rgba(255, 255, 255, 0.58);
-  backdrop-filter:          blur(22px) saturate(170%);
-  -webkit-backdrop-filter:  blur(22px) saturate(170%);
-  border:                   1px solid rgba(255, 255, 255, 0.72);
+  background:              rgba(255, 255, 255, 0.58);
+  backdrop-filter:         blur(22px) saturate(170%);
+  -webkit-backdrop-filter: blur(22px) saturate(170%);
+  border:                  1px solid rgba(255, 255, 255, 0.72);
   box-shadow:
     0 18px 50px rgba(26, 26, 26, 0.10),
     inset 0  1px 0 rgba(255, 255, 255, 0.85),
@@ -96,45 +80,30 @@ body {
   overflow: hidden;
 }
 
-/* Subtle shine sweep on hover */
 .glass-nav::before {
   content: '';
-  position:         absolute;
-  inset:            0;
-  transform:        translateX(-120%);
-  background:       linear-gradient(
-    110deg,
-    transparent         20%,
-    rgba(255,255,255,0.42) 45%,
-    transparent         70%
-  );
-  transition:       transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
-  pointer-events:   none;
-  border-radius:    inherit;
+  position:       absolute;
+  inset:          0;
+  transform:      translateX(-120%);
+  background:     linear-gradient(110deg, transparent 20%, rgba(255,255,255,0.42) 45%, transparent 70%);
+  transition:     transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  border-radius:  inherit;
 }
 
-.glass-nav:hover::before {
-  transform: translateX(120%);
-}
+.glass-nav:hover::before { transform: translateX(120%); }
 
-/* ─────────────────────────────────────────────────────
-   Glass dropdown (mobile menu)
-───────────────────────────────────────────────────── */
 .glass-dropdown {
-  background:               rgba(255, 255, 255, 0.76);
-  backdrop-filter:          blur(20px) saturate(160%);
-  -webkit-backdrop-filter:  blur(20px) saturate(160%);
-  border:                   1px solid rgba(255, 255, 255, 0.70);
+  background:              rgba(255, 255, 255, 0.76);
+  backdrop-filter:         blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border:                  1px solid rgba(255, 255, 255, 0.70);
   box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.90);
 }
 
-/* ── Navbar CTA shine ── */
-.btn-shine {
-  position: relative;
-  overflow: hidden;
-}
+.btn-shine { position: relative; overflow: hidden; }
 
 .btn-shine::before {
   content: '';
@@ -143,31 +112,17 @@ body {
   left: -60%;
   width: 40%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.22) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.22) 50%, transparent 100%);
   border-radius: inherit;
   pointer-events: none;
   transform: skewX(-15deg);
 }
 
-.btn-shine:hover::before {
-  animation: shimmer-slide 0.55s ease forwards;
-}
+.btn-shine:hover::before { animation: shimmer-slide 0.55s ease forwards; }
 
-/* ─────────────────────────────────────────────────────
-   Scroll Reveal
-   Used by components/Reveal.tsx.
-   Elements start hidden and transition in when they
-   enter the viewport (IntersectionObserver adds
-   .reveal-visible once the threshold is crossed).
-───────────────────────────────────────────────────── */
 .reveal {
-  opacity:    0;
-  transform:  translate3d(0, 28px, 0);
+  opacity:     0;
+  transform:   translate3d(0, 28px, 0);
   will-change: opacity, transform;
   transition:
     opacity   800ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -179,30 +134,8 @@ body {
   transform: translate3d(0, 0, 0);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity:    1 !important;
-    transform:  none !important;
-    transition: none !important;
-  }
-}
-
-/* ─────────────────────────────────────────────────────
-   Screen Visual Animation System
-   Consumed by components/ScreenVisual.tsx.
-
-   Philosophy:
-   • Both images are always in the DOM — crossfade via opacity only.
-   • GPU-composited: will-change, backface-visibility, translateZ(0).
-   • No JS state on hover → no flicker, no re-paint, no layout shift.
-   • Single place to tune curves/durations for all screen visuals.
-───────────────────────────────────────────────────── */
-
-/*
- * Root wrapper — handles whole-visual hover lift + subtle tilt.
- */
 .screen-visual {
-  position: relative;
+  position:    relative;
   will-change: transform;
   transition:
     transform 850ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -213,18 +146,10 @@ body {
   transform: translate3d(0, -10px, 0) scale(1.025) rotateZ(-0.8deg);
 }
 
-/*
- * Compact variant — use inside cards that already lift on hover
- * (avoids double-lift when the parent card has hover:-translate-y-*).
- */
 .screen-visual.screen-visual-compact:hover {
   transform: translate3d(0, -4px, 0) scale(1.01) rotateZ(-0.3deg);
 }
 
-/*
- * Base for all image layers.
- * GPU-composited for jank-free opacity + transform changes.
- */
 .screen-image-layer {
   backface-visibility:         hidden;
   -webkit-backface-visibility: hidden;
@@ -236,10 +161,9 @@ body {
     filter    850ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ── Primary image: visible by default, fades out on hover ── */
 .screen-image-primary {
   opacity: 1;
-  filter: drop-shadow(0 28px 56px rgba(0, 0, 0, 0.28));
+  filter:  drop-shadow(0 28px 56px rgba(0, 0, 0, 0.28));
 }
 
 .screen-visual:hover .screen-image-primary {
@@ -248,7 +172,6 @@ body {
   filter:    drop-shadow(0 14px 28px rgba(0, 0, 0, 0.14));
 }
 
-/* ── Secondary image: hidden by default, fades in on hover ── */
 .screen-image-secondary {
   opacity:   0;
   transform: translateZ(0) scale(0.985);
@@ -263,7 +186,6 @@ body {
     drop-shadow(0 0  36px rgba(37, 211, 102, 0.10));
 }
 
-/* ── Solo image: no swap variant, just deepens shadow on hover ── */
 .screen-image-solo {
   filter: drop-shadow(0 28px 56px rgba(0, 0, 0, 0.28));
 }
@@ -274,10 +196,9 @@ body {
     drop-shadow(0 0  32px rgba(37, 211, 102, 0.08));
 }
 
-/* ── Glow halo (rendered when glow={true} on ScreenVisual) ── */
 .screen-glow {
-  opacity:    0.45;
-  transform:  scale(0.65);
+  opacity:   0.45;
+  transform: scale(0.65);
   transition:
     opacity   850ms cubic-bezier(0.22, 1, 0.36, 1),
     transform 850ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -288,35 +209,34 @@ body {
   transform: scale(0.78);
 }
 
-/* ─────────────────────────────────────────────────────
-   Reduced-motion overrides
-   Honour OS-level "reduce motion" preference.
-   Keep images readable; skip all transforms + transitions.
-───────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  /* Disable floating idle animation in hero */
-  .animate-float-slow {
+  .animate-float-slow,
+  .animate-pulse-glow,
+  .animate-grow-bar {
     animation: none !important;
   }
 
-  /* Freeze the whole visual */
+  .reveal {
+    opacity:    1 !important;
+    transform:  none !important;
+    transition: none !important;
+  }
+
   .screen-visual,
   .screen-visual.screen-visual-compact {
-    transition:    none !important;
-    will-change:   auto !important;
+    transition:  none !important;
+    will-change: auto !important;
   }
   .screen-visual:hover,
   .screen-visual.screen-visual-compact:hover {
     transform: none !important;
   }
 
-  /* Freeze all image layers */
   .screen-image-layer {
     transition:  none !important;
     will-change: auto !important;
   }
 
-  /* Keep primary visible; never show secondary */
   .screen-visual:hover .screen-image-primary {
     opacity:   1 !important;
     transform: translateZ(0) !important;
@@ -327,7 +247,6 @@ body {
     opacity: 0 !important;
   }
 
-  /* Freeze glow */
   .screen-glow {
     transition: none !important;
   }

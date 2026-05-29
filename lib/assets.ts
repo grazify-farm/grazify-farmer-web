@@ -1,14 +1,3 @@
-/**
- * Centralized asset paths.
- *
- * Screen variants:
- *   portrait — straight-on phone, best for feature clarity
- *   left     — 3-D perspective tilt, best for hero / depth sections
- *
- * Rule: website provides ALL heading/description text. Images are
- * purely visual app previews — no marketing text overlaid.
- */
-
 type ScreenPair = { portrait: string; left: string };
 
 const screen = (slug: string): ScreenPair => ({

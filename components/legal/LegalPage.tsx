@@ -1,26 +1,30 @@
 import Link from "next/link";
+import Container from "@/components/common/Container";
 import { SITE } from "@/lib/constants";
 import type { LegalDocument } from "@/lib/legal-content";
-
-type LegalPageProps = LegalDocument;
 
 export default function LegalPage({
   title,
   lastUpdated,
   summary,
   sections,
-}: LegalPageProps) {
+}: LegalDocument) {
   return (
     <main className="bg-[#F7F7F7] min-h-screen">
 
-      {/* Hero strip */}
       <div className="bg-[#EAF8F0] pt-24 pb-12 px-4 border-b border-[#D8F0E6]">
-        <div className="max-w-3xl mx-auto">
+        <Container size="narrow" className="px-0">
           <Link
             href="/"
             className="inline-flex items-center gap-1.5 text-[#25D366] text-sm font-semibold mb-6 hover:underline"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
             Back to {SITE.appName}
@@ -31,22 +35,18 @@ export default function LegalPage({
             {SITE.appName} is operated as a product of{" "}
             <span className="text-[#25D366] font-semibold">{SITE.companyName}</span>.
           </p>
-        </div>
+        </Container>
       </div>
 
-      {/* Content */}
-      <div className="max-w-3xl mx-auto px-4 py-12">
-
-        {/* Summary card */}
+      <Container size="narrow" className="py-12">
         <div className="bg-white border border-[#D0D0D0] rounded-[1.5rem] p-6 mb-10 shadow-sm">
           <div className="flex items-center gap-2 mb-3">
-            <span className="text-[#25D366] text-lg">📋</span>
+            <span className="text-[#25D366] text-lg" aria-hidden="true">📋</span>
             <h2 className="font-bold text-[#202020] text-base">Summary</h2>
           </div>
           <p className="text-[#6D6D6D] text-sm leading-relaxed">{summary}</p>
         </div>
 
-        {/* Sections */}
         <div className="space-y-6">
           {sections.map((section, i) => (
             <div
@@ -63,7 +63,7 @@ export default function LegalPage({
             </div>
           ))}
         </div>
-      </div>
+      </Container>
     </main>
   );
 }

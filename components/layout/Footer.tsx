@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import Container from "@/components/common/Container";
 import GooglePlayButton from "@/components/common/GooglePlayButton";
 import Reveal from "@/components/common/Reveal";
 import { ASSETS } from "@/lib/assets";
@@ -9,10 +10,9 @@ import { FOOTER_LINKS } from "@/lib/site-content";
 export default function Footer() {
   return (
     <footer id="contact" className="bg-[#1A1A1A] text-[#EEEEEE] pt-14 pb-8">
-      <div className="max-w-6xl mx-auto px-4">
+      <Container>
         <div className="flex flex-col md:flex-row justify-between gap-10 mb-10">
 
-          {/* Brand */}
           <Reveal className="max-w-sm">
             <div className="flex items-center gap-3 mb-1">
               <Image
@@ -37,7 +37,6 @@ export default function Footer() {
             <GooglePlayButton variant="footer" />
           </Reveal>
 
-          {/* Quick links */}
           <Reveal delay={80}>
             <h3 className="font-bold mb-4 text-xs text-[#6D6D6D] uppercase tracking-widest">
               Quick Links
@@ -56,20 +55,20 @@ export default function Footer() {
             </ul>
           </Reveal>
 
-          {/* Contact */}
           <Reveal delay={160}>
             <h3 className="font-bold mb-4 text-xs text-[#6D6D6D] uppercase tracking-widest">
               Contact Us
             </h3>
             <a
               href={`mailto:${SITE.supportEmail}`}
-              className="flex items-center gap-2 text-[#6D6D6D] text-sm hover:text-[#25D366] transition-colors font-medium"
+              className="flex items-center gap-2 text-[#6D6D6D] text-sm hover:text-[#25D366] transition-colors font-medium break-all"
             >
               <svg
                 className="w-4 h-4 flex-shrink-0"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -85,17 +84,17 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-[#2E2E2E] pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-[#6D6D6D] text-sm">
+          <p className="text-[#6D6D6D] text-sm text-center sm:text-left">
             © 2026 {SITE.companyName}.{" "}
             <span className="text-[#505050]">{SITE.legalCredit}.</span>
           </p>
           <div className="flex items-center gap-1.5 text-[#6D6D6D] text-xs">
             <span>Made with</span>
-            <span className="text-[#25D366]">♥</span>
+            <span className="text-[#25D366]" aria-hidden="true">♥</span>
             <span>for Indian farmers</span>
           </div>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }

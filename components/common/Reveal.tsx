@@ -1,41 +1,14 @@
 "use client";
 
-/**
- * Reveal
- *
- * Lightweight scroll-reveal wrapper using IntersectionObserver.
- * When the element enters the viewport it transitions from
- * opacity-0 / translateY-28 to opacity-1 / translateY-0.
- *
- * CSS lives in globals.css (.reveal / .reveal-visible).
- * prefers-reduced-motion is respected there.
- *
- * Usage:
- *   <Reveal delay={160}>
- *     <SomeCard />
- *   </Reveal>
- *
- * Inside a CSS grid the Reveal wrapper div becomes the grid cell —
- * pass className for any col-span / layout classes needed on that cell.
- */
-
 import { useEffect, useRef, useState } from "react";
+import type { ReactNode } from "react";
 
-interface RevealProps {
-  children: React.ReactNode;
-  /** Extra classes applied to the wrapper div (e.g. grid col-span) */
+type RevealProps = {
+  children: ReactNode;
   className?: string;
-  /**
-   * Transition delay in ms.
-   * Use increasing multiples (0, 80, 160 …) to stagger card grids.
-   */
   delay?: number;
-  /**
-   * Animate only once — element stays visible after first reveal.
-   * Default: true.
-   */
   once?: boolean;
-}
+};
 
 export default function Reveal({
   children,
@@ -50,6 +23,14 @@ export default function Reveal({
     const el = ref.current;
     if (!el) return;
 
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      setVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -59,12 +40,7 @@ export default function Reveal({
           setVisible(false);
         }
       },
-      {
-        threshold: 0.12,
-        // Trigger slightly before the element fully enters the viewport
-        // so the animation is already running when the user sees it.
-        rootMargin: "0px 0px -60px 0px",
-      }
+      { threshold: 0.12, rootMargin: "0px 0px -60px 0px" }
     );
 
     observer.observe(el);

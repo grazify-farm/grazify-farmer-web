@@ -1,7 +1,3 @@
-/**
- * Site-wide constants.
- * Prefer importing the `SITE` object from this file across the codebase.
- */
 export const SITE = {
   appName:       "GraziLink",
   appTagline:    "Farmer Community",

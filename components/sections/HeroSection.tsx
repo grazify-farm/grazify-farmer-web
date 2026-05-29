@@ -1,8 +1,10 @@
 import Link from "next/link";
+import Container from "@/components/common/Container";
 import DottedPattern from "@/components/common/DottedPattern";
 import GooglePlayButton from "@/components/common/GooglePlayButton";
 import ScreenVisual from "@/components/screens/ScreenVisual";
 import { ASSETS } from "@/lib/assets";
+import { SITE } from "@/lib/constants";
 
 const featurePills = [
   { icon: "👥", label: "Farmer Community" },
@@ -11,20 +13,15 @@ const featurePills = [
   { icon: "📰", label: "Farm News" },
 ];
 
-/* Reusable fade-up style (above-the-fold — CSS animation, not IntersectionObserver) */
-function heroStyle(delay: number) {
-  return {
-    animation: `fade-up 0.75s cubic-bezier(0.22,1,0.36,1) ${delay}ms both`,
-  };
-}
+const fadeUp = (delay: number) => ({
+  animation: `fade-up 0.75s cubic-bezier(0.22,1,0.36,1) ${delay}ms both`,
+});
 
 export default function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-[#EAF8F0] pt-24 pb-16 md:pb-20 min-h-screen flex items-center">
-      {/* Dotted texture */}
       <DottedPattern />
 
-      {/* Animated background blobs */}
       <div
         className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#25D366] rounded-full blur-3xl -translate-y-1/3 translate-x-1/3 pointer-events-none animate-pulse-glow"
         aria-hidden="true"
@@ -40,28 +37,25 @@ export default function HeroSection() {
         aria-hidden="true"
       />
 
-      <div className="relative max-w-6xl mx-auto px-4 w-full flex flex-col md:flex-row items-center gap-10 md:gap-16 py-8">
+      <Container className="relative w-full flex flex-col md:flex-row items-center gap-10 md:gap-16 py-8">
 
-        {/* ── LEFT: text + CTAs ── */}
         <div className="flex-1 text-center md:text-left max-w-xl mx-auto md:mx-0">
-
-          {/* Eyebrow */}
           <div
             className="inline-flex items-center gap-2 bg-white border border-[#D0D0D0] text-xs font-bold px-4 py-1.5 rounded-full mb-5 shadow-sm"
-            style={heroStyle(80)}
+            style={fadeUp(80)}
           >
             <span>🌾</span>
             <span className="text-[#6D6D6D] font-medium">
               By{" "}
-              <span className="text-[#25D366] font-bold">Grazify</span>
+              <span className="text-[#25D366] font-bold">{SITE.companyName}</span>
             </span>
             <span className="text-[#D0D0D0] select-none">·</span>
             <span className="text-[#25D366]">Built for Indian farmers</span>
           </div>
 
           <h1
-            className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-[#202020] leading-[1.12] mb-5"
-            style={heroStyle(180)}
+            className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-[#202020] leading-[1.12] mb-5"
+            style={fadeUp(180)}
           >
             Your farming{" "}
             <span className="text-[#25D366]">community</span>
@@ -69,17 +63,16 @@ export default function HeroSection() {
           </h1>
 
           <p
-            className="text-[#6D6D6D] text-lg leading-relaxed mb-8 max-w-lg mx-auto md:mx-0"
-            style={heroStyle(280)}
+            className="text-[#6D6D6D] text-base md:text-lg leading-relaxed mb-8 max-w-lg mx-auto md:mx-0"
+            style={fadeUp(280)}
           >
             Connect with farmers, share knowledge, scan crops for possible
             disease or stress, and stay updated with farmer-focused news.
           </p>
 
-          {/* CTAs */}
           <div
             className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start mb-7"
-            style={heroStyle(380)}
+            style={fadeUp(380)}
           >
             <GooglePlayButton variant="hero" />
             <Link
@@ -90,10 +83,9 @@ export default function HeroSection() {
             </Link>
           </div>
 
-          {/* Feature pills */}
           <div
             className="flex flex-wrap gap-2 justify-center md:justify-start"
-            style={heroStyle(460)}
+            style={fadeUp(460)}
           >
             {featurePills.map((pill) => (
               <span
@@ -107,26 +99,25 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* ── RIGHT: tilted phone screenshot ── */}
         <div
-          className="flex-1 flex justify-center md:justify-end"
-          style={heroStyle(300)}
+          className="flex-1 flex justify-center md:justify-end w-full"
+          style={fadeUp(300)}
         >
           <div className="animate-float-slow">
             <ScreenVisual
               portraitSrc={ASSETS.screens.communityFeed.portrait}
               leftSrc={ASSETS.screens.communityFeed.left}
-              alt="GraziLink app — community feed showing farmer posts and agricultural news"
+              alt="GraziLink community feed"
               preferred="left"
               hoverSwap
               glow
               maxWidth={310}
-              loading="eager"
+              priority
             />
           </div>
         </div>
 
-      </div>
+      </Container>
     </section>
   );
 }

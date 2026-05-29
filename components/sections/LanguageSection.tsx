@@ -1,20 +1,20 @@
-import { LANGUAGES } from "@/lib/site-content";
-import ScreenVisual from "@/components/screens/ScreenVisual";
+import Container from "@/components/common/Container";
 import Reveal from "@/components/common/Reveal";
+import ScreenVisual from "@/components/screens/ScreenVisual";
 import { ASSETS } from "@/lib/assets";
+import { LANGUAGES } from "@/lib/site-content";
 
 export default function LanguageSection() {
   return (
     <section className="py-20 bg-[#F7F7F7]">
-      <div className="max-w-6xl mx-auto px-4">
+      <Container>
         <div className="flex flex-col lg:flex-row items-center gap-12">
 
-          {/* Language screen */}
           <Reveal className="flex justify-center flex-shrink-0 w-full lg:max-w-[240px]">
             <ScreenVisual
               portraitSrc={ASSETS.screens.language.portrait}
               leftSrc={ASSETS.screens.language.left}
-              alt="GraziLink language selection screen — choose from 13+ Indian languages"
+              alt="GraziLink language selection screen"
               preferred="portrait"
               hoverSwap
               glow
@@ -22,7 +22,6 @@ export default function LanguageSection() {
             />
           </Reveal>
 
-          {/* Text + chips */}
           <Reveal delay={120} className="flex-1 text-center lg:text-left">
             <span className="inline-flex items-center gap-2 bg-[#EAF8F0] text-[#25D366] text-xs font-bold px-4 py-1.5 rounded-full mb-5">
               🌐 13+ Indian languages
@@ -31,7 +30,7 @@ export default function LanguageSection() {
               Built for India&apos;s{" "}
               <span className="text-[#25D366]">diverse farming communities</span>
             </h2>
-            <p className="text-[#6D6D6D] text-lg mb-8 max-w-lg mx-auto lg:mx-0">
+            <p className="text-[#6D6D6D] text-base md:text-lg mb-8 max-w-lg mx-auto lg:mx-0">
               GraziLink supports 13+ Indian languages, helping farmers use the
               app in the language they are comfortable with.
             </p>
@@ -48,7 +47,7 @@ export default function LanguageSection() {
           </Reveal>
 
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
